@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWK Bali</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Tambahkan Font Awesome CDN untuk ikon sosial -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header dengan layout tengah */
+        header {
+            background-color: #f8f8f8;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo img {
+            width: 150px;
+            height: auto;
+            margin-right: 30px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        nav ul li a:hover {
+            color: #e76e57;
+        }
+
+        .login-container {
+        padding: 5px 10px; /* Menambahkan padding di sekitar Login */
+        background-color: #e76e57; /* Warna latar belakang */
+        border-radius: 60px; /* Menambahkan radius border untuk efek rounded */
+        }
+
+        .login-link {
+            color: white; /* Warna teks */
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 10px; /* Padding dalam tombol */
+            border-radius: 60px; /* Rounded corner */
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .login-link:hover {
+            background-color: #ffffff; /* Warna latar saat hover */
+            transform: scale(1.05); /* Efek zoom saat hover */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh; /* Menggunakan 100% tinggi layar */
+            width: 100vw;  /* Menggunakan 100% lebar layar */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-section video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Menutupi seluruh area */
+            transform: translate(-50%, -50%); /* Menjaga posisi tengah */
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        .overlay-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Bagian tentang GWK */
+        section {
+            padding: 60px 20px;
+            scroll-margin-top: 100px;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* Galeri Style */
+        #galeri {
+            padding: 60px 20px;
+            background-color: #f8f8f8;
+        }
+
+        #galeri h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        #galeri p {
+            font-size: 1.1rem;
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsif grid */
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Tiket dan Event Section */
+        .ticket-card {
+        background-color: #fff;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .ticket-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .ticket-info {
+        flex: 1;
+    }
+
+    .ticket-price {
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #FF6F50;
+    }
+
+    .btn-ticket {
+        padding: 12px 25px;
+        background-color: #FF6F50;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-ticket:hover {
+        background-color: #d26545;
+        transform: scale(1.05);
+    }
+
+        /* Menghapus underline biru pada tautan */
+        a {
+            text-decoration: none; /* Menghilangkan underline */
+        }
+
+        a:hover {
+            text-decoration: none; /* Menghilangkan underline saat hover */
+        }
+
+        /* Menghapus underline biru hanya untuk link event */
+        .jelajah-rekreasi .card a {
+            text-decoration: none;
+        }
+
+        .jelajah-rekreasi .card a:hover {
+            text-decoration: none;
+        }
+
+        /* Responsif untuk perangkat mobile */
+        @media (max-width: 768px) {
+            .ticket-card, .event-item {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .ticket-info, .event-description {
+                text-align: left;
+            }
+        }
+
+        .jelajah-rekreasi {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        .jelajah-rekreasi .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .jelajah-rekreasi h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .card-wrapper {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-content p,
+        .card-content ul {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+        
+
+        /* Footer */
+         /* Footer */
+         footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 5px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #e76e57;
+        }
+
+        .social-text {
+        font-family: 'Roboto', sans-serif; /* Pastikan menggunakan font biasa */
+        font-size: 1rem; /* Ukuran font teks */
+        margin-left: 8px; 
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.php"><img src="gwk logo.png" alt="GWK Bali Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#tentang-gwk">Tentang GWK</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#ticket">Tiket</a></li>
+                <li class="login-container"><a href="login.php" class="login-link">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+    <div class="hero-section">
+    <video autoplay muted loop playsinline>
+        <source src="gwk_bali.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+    </section>
+
+    <div class="container">
+    <section id="tentang-gwk">
+        <h2>Tentang GWK</h2>
+        <p style="text-align: justify;">
+            Garuda Wisnu Kencana (GWK) Bali merupakan destinasi wisata budaya yang megah dan ikonik, terletak di Bukit Ungasan, Kabupaten Badung, Bali. Taman ini terkenal dengan patung raksasa Dewa Wisnu yang mengendarai burung Garuda, yang merupakan salah satu simbol kuat dalam ajaran Hindu. Dewa Wisnu dikenal sebagai pelindung alam semesta, sementara burung Garuda melambangkan kesetiaan dan keberanian. Dengan tinggi mencapai 121 meter, patung ini menjadi salah satu patung tertinggi di dunia dan mencerminkan perpaduan harmonis antara seni, budaya, dan spiritualitas yang mendalam. Dibangun di atas lahan seluas 60 hektar, kawasan GWK menjadi landmark monumental yang mengundang jutaan wisatawan setiap tahunnya.
+        </p>
+        <p style="text-align: justify;">
+            Proyek pembangunan patung GWK dirancang oleh seniman ternama Nyoman Nuarta dan dimulai pada tahun 1997. Meski menghadapi berbagai tantangan, baik dari segi teknis maupun pendanaan, patung ini akhirnya selesai dan diresmikan pada tahun 2018, menjadikannya salah satu proyek seni terbesar dan paling ambisius di Indonesia. Patung ini terdiri dari 754 modul tembaga dan kuningan dengan rangka baja, dan mampu bertahan terhadap guncangan gempa serta terpaan angin kencang. Proses pengerjaannya memakan waktu lebih dari dua dekade, yang mencerminkan dedikasi dan komitmen tinggi untuk menghadirkan karya seni luar biasa yang akan bertahan dalam sejarah.
+        </p>
+        <p style="text-align: justify;">
+            Selain patung raksasa, kawasan GWK juga menawarkan berbagai atraksi budaya yang memperkaya pengalaman pengunjung. Taman ini sering menjadi tempat penyelenggaraan pertunjukan seni tari tradisional Bali seperti Tari Kecak, Barong, dan Legong yang dipentaskan secara berkala di Amphitheater GWK. Selain itu, pengunjung dapat menikmati pameran seni, konser musik, dan festival budaya yang diselenggarakan di Lotus Pond, area outdoor terbesar di kawasan tersebut. GWK juga memiliki beberapa spot menarik seperti Plaza Wisnu, di mana terdapat bagian awal patung Dewa Wisnu, serta Garuda Plaza yang menampilkan patung burung Garuda sebelum akhirnya disatukan dalam patung utama.
+        </p>
+        <p style="text-align: justify;">
+            Pemandangan dari kawasan GWK menawarkan panorama spektakuler, memperlihatkan hamparan Bukit Ungasan dan lautan biru yang membentang luas. Saat senja, GWK menjadi tempat yang ideal untuk menyaksikan matahari terbenam dengan latar belakang patung megah yang bersinar keemasan. Tak hanya sebagai destinasi wisata, GWK juga menjadi simbol kebanggaan masyarakat Bali dan Indonesia, yang menunjukkan kemegahan warisan budaya serta kekayaan spiritual yang dimiliki bangsa ini. Dengan berbagai keindahan dan makna filosofis yang terkandung dalam setiap sudutnya, GWK Bali menjadi destinasi yang wajib dikunjungi bagi siapa saja yang ingin merasakan pengalaman budaya dan spiritual yang mendalam.
+        </p>
+        </section>
+        <section id="galeri">
+            <h2>Galeri</h2>
+            <p>Koleksi gambar yang menunjukkan keindahan GWK Bali.</p>
+        
+            <div class="gallery-container">
+                <!-- Gambar 1 -->
+                <div class="gallery-item">
+                    <img src="gwk bali10.jpg" alt="Gambar 1">
+                </div>
+                <!-- Gambar 2 -->
+                <div class="gallery-item">
+                    <img src="gwk bali3.webp" alt="Gambar 2">
+                </div>
+                <!-- Gambar 3 -->
+                <div class="gallery-item">
+                    <img src="gwk bali5.webp" alt="Gambar 3">
+                </div>
+                <!-- Gambar 4 -->
+                <div class="gallery-item">
+                    <img src="gwk bali6.jpg" alt="Gambar 4">
+                </div>
+                <!-- Gambar 5 -->
+                <div class="gallery-item">
+                    <img src="gwk bali7.webp" alt="Gambar 5">
+                </div>
+                <!-- Gambar 6 -->
+                <div class="gallery-item">
+                    <img src="gwk bali8.jpg" alt="Gambar 6">
+                </div>
+                <!-- Gambar 7 -->
+                <div class="gallery-item">
+                    <img src="gwk bali9.jpg" alt="Gambar 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="gwk bali16.webp" alt="Gambar 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="gwk bali20.jpeg" alt="Gambar 7">
+                </div>
+            </div>
+        </section>
+
+        <section id="ticket" class="ticket-section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Informasi Tiket</h2>
+            <div class="ticket-card">
+                <div class="ticket-info">
+                    <p class="ticket-subtitle">Jam Operasional</p>
+                    <p class="ticket-detail">Hari Senin - Minggu: <strong>08.00 - 21.00 WITA</strong></p>
+                </div>
+                <div class="ticket-info">
+                    <p class="ticket-subtitle">Harga Tiket</p>
+                    <p class="ticket-price">Rp. <span class="price-amount">100.000</span></p>
+                </div>
+                <div class="ticket-action">
+                    <a href="login.php" class="btn-ticket">Beli Tiket Sekarang</a>
+                </div>
+            </div>
+
+            </section>
+                <section class="jelajah-rekreasi">
+    <div class="container">
+        <h2>Event dan Aktivitas di GWK</h2>
+        <div class="card-wrapper">
+            <!-- Tari Kecak -->
+            <a href="login.php" class="card">
+                <img src="festival_tari.jpg" alt="Tari Kecak & Fire Dance">
+                <div class="card-content">
+                    <h3>Tari Kecak GWK</h3>
+                    <p>Waktu: Setiap hari, pukul 18.30 – 19.30 WITA</p>
+                    <p>Harga: Rp 150.000 (belum termasuk tiket masuk)</p>
+                </div>
+            </a>
+
+            <!-- Pameran Karya Seni -->
+            <a href="login.php" class="card">
+                <img src="karya_seni.jpeg" alt="Pameran Karya Seni">
+                <div class="card-content">
+                    <h3>Pameran Karya Seni</h3>
+                    <p>Waktu: Akhir pekan, pukul 08.00 – 19.00 WITA</p>
+                    <p>Harga : Rp 80.000 (belum termasuk tiket masuk)</p>
+                </div>
+            </a>
+
+            <!-- Layanan Foto Profesional -->
+            <a href="login.php" class="card">
+                <img src="layanan_foto.webp" alt="Layanan Foto Profesional">
+                <div class="card-content">
+                    <h3>Layanan Foto Profesional</h3>
+                    <p>Waktu: Setiap Hari, pukul 08.00 – 21.00 WITA</p>
+                    <p>Harga: Rp 200.000 (belum termasuk tiket masuk)</p>
+                </div>
+            </a>
+
+            <!-- Segway -->
+            <a href="login.php" class="card">
+                <img src="segway_bali.png" alt="Segway">
+                <div class="card-content">
+                    <h3>Segway</h3>
+                    <p>Waktu: Setiap Hari, pukul 08.00 – 21.00 WITA</p>
+                    <p>Harga: Rp 70.000 (belum termasuk tiket masuk)</p>
+                </div>
+            </a>
+
+            <!-- Sepeda Elektrik -->
+            <a href="login.php" class="card">
+                <img src="sepeda_elektrik.webp" alt="Sepeda Elektrik">
+                <div class="card-content">
+                    <h3>Sepeda Elektrik</h3>
+                    <p>Waktu: Setiap Hari, pukul 08.00 – 21.00 WITA</p>
+                    <p>Harga: Rp 50.000 (belum termasuk tiket masuk)</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+</div>
+
+    <footer>
+        <p>Alamat: Jl. Raya GWK, Ungasan, Bali</p>
+        <p>Telepon: (0361) 123456</p>
+        <p>Email: info@gwkbali.com</p>
+        <div class="social-links">
+    <a href="https://www.facebook.com/GWK-Bali" class="fab fa-facebook-f" title="Facebook" target="_blank">
+        <span class="social-text">Facebook</span>
+    </a>
+    <a href="https://twitter.com/GWK_Bali" class="fab fa-x" title="X (Twitter)" target="_blank">
+        <span class="social-text"></span>
+    </a>
+    <a href="https://www.instagram.com/gwkbali" class="fab fa-instagram" title="Instagram" target="_blank">
+        <span class="social-text">Instagram</span>
+    </a>
+    </div>
+    </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
